@@ -267,12 +267,32 @@
     <script src="{{ asset('mazer/assets/static/js/pages/simple-datatables.js') }}"></script>
 
     <script src="{{ asset('mazer/assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>
-    >
+
     <script src="{{ asset('mazer/assets/static/js/pages/sweetalert2.js') }}"></script>
 
     {{-- <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script> --}}
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelectorAll('.delete-kontak').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        event.target.closest('form').submit();
+                    }
+                })
+            });
+        });
+    </script>
 
 
 </body>
@@ -287,5 +307,6 @@
         // toastr.success("{{ Session::get('success') }}");
     @endif
 </script>
+
 
 </html>

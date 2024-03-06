@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Home;
+use App\Models\Jabatan;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class HomeController extends Controller
     public function index()
     {
         $countkar = Karyawan::count();
-        return view ('welcome', compact('countkar'));
+        $countjab = Jabatan::count();
+        return view('welcome', compact('countkar', 'countjab'));
     }
 
     /**

@@ -16,7 +16,7 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                             value="{{ old('name') }}" placeholder="Masukkan Nama Lengkap">
                         @error('name')
-                            <div class="alert alert-danger mt-2">
+                            <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
@@ -27,7 +27,7 @@
                         <input type="text" class="form-control @error('norek') is-invalid @enderror" name="norek"
                             value="{{ old('norek') }}" placeholder="Masukkan No Rekening">
                         @error('norek')
-                            <div class="alert alert-danger mt-2">
+                            <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
@@ -38,7 +38,7 @@
                         <input type="number" step="0.01" class="form-control @error('lamakerja') is-invalid @enderror"
                             name="lamakerja" value="{{ old('lamakerja') }}" placeholder="Masukkan No Rekening">
                         @error('lamakerja')
-                            <div class="alert alert-danger mt-2">
+                            <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
@@ -48,7 +48,7 @@
                         <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
 
                         @error('image')
-                            <div class="alert alert-danger mt-2">
+                            <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror

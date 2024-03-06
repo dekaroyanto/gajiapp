@@ -79,33 +79,66 @@ class KaryawanController extends Controller
 
     // }
 
-    public function show(string $id): View
+    public function show($id)
     {
-        $karyawans = Karyawan::findOrFail($id);
+        $karyawans = Karyawan::find($id);
         return view('karyawans.show', compact('karyawans'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Karyawan $karyawan)
+    public function edit(string $id): View
     {
-        //
+        $karyawans = Karyawan::findOrFail($id);
+        return view('karyawans.edit', compact('karyawans'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Karyawan $karyawan)
+    public function update(Request $request, $id): RedirectResponse
     {
-        //
+        //validate form
+        $this->validate($request, [
+            'name'     => 'required',
+            'norek'   => 'required',
+            'lamakerja' => 'required'
+        ], [
+            'name.required' => 'Nama wajib diisi.',
+            // 'name.min' => 'Nama minimal harus 5 karakter.',
+            'norek.required' => 'Nomor rekening wajib diisi.',
+            'lamakerja.required' => 'Lama kerja wajib diisi.',
+        ]);
+
+        $karyawans = Karyawan::findOrFail($id);
+
+        $karyawans->update([
+            'name'     => $request->name,
+            'norek'   => $request->norek,
+            'lamakerja'   => $request->lamakerja,
+        ]);
+
+
+        //redirect to index
+        return redirect()->route('karyawans.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Karyawan $karyawan)
+    public function destroy($id): RedirectResponse
     {
-        //
+        $karyawans = Karyawan::findOrFail($id);
+        $karyawans->delete();
+        return redirect()->route('karyawans.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
+
+    // public function destroy($id)
+    // {
+    //     $karyawans = Karyawan::find($id);
+    //     $karyawans->delete();
+
+    //     return redirect()->route('karyawans.index')->with('success', 'Data Berhasil Di Hapus');
+    // }
 }
