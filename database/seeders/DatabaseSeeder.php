@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Jabatan;
 use App\Models\Karyawan;
+use App\Models\Totalgaji;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +40,6 @@ class DatabaseSeeder extends Seeder
                 'lamakerja' => '2.1',
                 'jabatan_id' => 9
             ],
-            // tambahkan data lainnya
         ];
 
         Karyawan::insert($data);
@@ -309,5 +309,22 @@ class DatabaseSeeder extends Seeder
         ];
 
         Jabatan::insert($data2);
+
+        $data3 = [
+            [
+                'karyawan_id' => 1,
+                'angsuran' => '1000',
+                'bpjs' => '2000',
+                'kasbon' => '3000'
+            ],
+            [
+                'karyawan_id' => 1,
+                'angsuran' => '4000',
+                'bpjs' => '5000',
+                'kasbon' => '6000'
+            ],
+        ];
+
+        Totalgaji::insert($data3);
     }
 }

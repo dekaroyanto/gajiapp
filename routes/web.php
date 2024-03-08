@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TotalgajiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/karyawans', \App\Http\Controllers\KaryawanController::class);
 
     Route::resource('/jabatans', \App\Http\Controllers\JabatanController::class);
+
+    Route::resource('/total-gaji', TotalgajiController::class);
 });
