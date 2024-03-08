@@ -13,6 +13,7 @@
                     <thead class="text-center">
                         <tr>
                             <th>Name</th>
+                            <th>Jabatan</th>
                             <th>No Rekening</th>
                             <th>Lama Kerja</th>
                             <th>Action</th>
@@ -22,6 +23,7 @@
                         @foreach ($karyawans as $karyawan)
                             <tr>
                                 <td>{{ $karyawan->name }}</td>
+                                <td>{{ $karyawan->jabatan->jabatan }}</td>
                                 <td>{{ $karyawan->norek }}</td>
                                 <td>{{ $karyawan->lamakerja }}</td>
                                 <td>

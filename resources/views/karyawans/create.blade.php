@@ -23,6 +23,21 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="jabatan" class="form-label">Jabatan</label>
+                        <select class="choices form-select @error('jabatan_id') is-invalid @enderror" name="jabatan_id"
+                            id="jabatan">
+                            @foreach ($jabatans as $jabatan)
+                                <option value="{{ $jabatan->id }}">{{ $jabatan->jabatan }}</option>
+                            @endforeach
+                        </select>
+                        @error('jabatan_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">No Rekening</label>
                         <input type="text" class="form-control @error('norek') is-invalid @enderror" name="norek"
                             value="{{ old('norek') }}" placeholder="Masukkan No Rekening">

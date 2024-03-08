@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\Karyawan;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class KaryawanController extends Controller
 
     public function index(): View
     {
-        $karyawans = Karyawan::latest()->get();
+        $karyawans = Karyawan::with('jabatan')->latest()->get();
         // $karyawans = DB::table('karyawans')->get();
 
         return view('karyawans.index', compact('karyawans'));
@@ -33,7 +34,9 @@ class KaryawanController extends Controller
      */
     public function create(): View
     {
-        return view('karyawans.create');
+        // return view('karyawans.create');
+        $jabatans = Jabatan::all();
+        return view('karyawans.create', compact('jabatans'));
     }
 
     /**
@@ -55,16 +58,14 @@ class KaryawanController extends Controller
             'lamakerja.required' => 'Lama kerja wajib diisi.',
         ]);
 
-        //upload image
-        $image = $request->file('image');
-        // $image->storeAs('public/karyawans', $image->hashName());
+
 
         //create post
         Karyawan::create([
-            // 'image'     => $image->hashName(),
             'name'     => $request->name,
             'norek'     => $request->norek,
             'lamakerja'     => $request->lamakerja,
+            'jabatan_id' => $request->jabatan_id,
         ]);
 
         //redirect to index

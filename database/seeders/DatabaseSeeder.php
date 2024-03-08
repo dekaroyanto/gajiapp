@@ -8,6 +8,7 @@ use App\Models\Jabatan;
 use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,13 +17,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::create(
+            [
+                "username" => 'admin',
+                "password" => Hash::make('admin'),
+                'name' => 'Deka',
+                'email' => 'dekaroy05@gmail.com'
+            ]
+        );
+
         $data = [
-            ['name' => 'Karyawan Satu', 'norek' => '123', 'lamakerja' => '1.2'],
-            ['name' => 'Karyawan Dua', 'norek' => '321', 'lamakerja' => '2.1'],
+            [
+                'name' => 'Karyawan Satu',
+                'norek' => '123',
+                'lamakerja' => '1.2',
+                'jabatan_id' => 6
+            ],
+            [
+                'name' => 'Karyawan Dua',
+                'norek' => '321',
+                'lamakerja' => '2.1',
+                'jabatan_id' => 9
+            ],
             // tambahkan data lainnya
         ];
 
         Karyawan::insert($data);
+
+
 
         $data2 = [
             [

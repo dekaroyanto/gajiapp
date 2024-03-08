@@ -21,6 +21,8 @@
 
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/compiled/css/table-datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+
 </head>
 
 <body>
@@ -203,7 +205,11 @@
                                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
-                                            <h6 class="mb-0 text-gray-600">Admin</h6>
+                                            @if (Auth::check())
+                                                <h6 class="mb-0 text-gray-600">
+                                                    Hi, {{ Auth::user()->name }}!
+                                                </h6>
+                                            @endif
                                             <p class="mb-0 text-sm text-gray-600">Administrator</p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
@@ -216,21 +222,31 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                                     style="min-width: 11rem;">
                                     <li>
-                                        <h6 class="dropdown-header">Hello, Admin!</h6>
+                                        @if (Auth::check())
+                                            <h6 class="mb-0 ms-2 text-gray-600">
+                                                Hi, {{ Auth::user()->name }}!
+                                            </h6>
+                                        @endif
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-person me-2"></i> My
-                                            Profile</a></li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-gear me-2"></i>
-                                            Settings</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi bi-people"></i>
+                                            Daftar Akun
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi bi-person-add"></i>
+                                            Tambah Akun
+                                        </a>
+                                    </li>
                                     <li><a class="dropdown-item" href="#"><i
                                                 class="icon-mid bi bi-wallet me-2"></i>
                                             Wallet</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
+                                    <li><a class="dropdown-item" id="logout" href="{{ route('logout') }}"><i
                                                 class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
                                 </ul>
                             </div>
@@ -269,10 +285,25 @@
     <script src="{{ asset('mazer/assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script src="{{ asset('mazer/assets/static/js/pages/sweetalert2.js') }}"></script>
+    <script src="{{ asset('mazer/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+    <script src="{{ asset('mazer/assets/static/js/pages/form-element-select.js') }}"></script>
+
 
     {{-- <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+            });
+        </script>
+    @endif
+
     <script>
         document.querySelectorAll('.delete-kontak').forEach(item => {
             item.addEventListener('click', event => {
@@ -290,6 +321,27 @@
                         event.target.closest('form').submit();
                     }
                 })
+            });
+        });
+    </script>
+
+    <script>
+        // Menggunakan Sweet Alert 2 untuk konfirmasi logout
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin logout?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, logout!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect ke route logout jika user mengkonfirmasi logout
+                    window.location.href = "{{ route('logout') }}";
+                }
             });
         });
     </script>
