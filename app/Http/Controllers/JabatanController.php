@@ -37,6 +37,7 @@ class JabatanController extends Controller
         //validate form
         $this->validate($request, [
             // 'image'     => 'required|image|mimes:jpeg,jpg,png|max:10048',
+            'departmen'     => 'required',
             'jabatan'     => 'required',
             'gajipokok'     => 'required',
             'gjabatan'     => 'required',
@@ -46,6 +47,7 @@ class JabatanController extends Controller
             'inshadir'     => 'required',
 
         ], [
+            'departmen.required' => 'Departmen wajib diisi.',
             'jabatan.required' => 'Jabatan wajib diisi.',
             'gajipokok.required' => 'Gaji Pokok wajib diisi.',
             'gjabatan.required' => 'Gaji Jabatan wajib diisi.',
@@ -59,6 +61,7 @@ class JabatanController extends Controller
         //create Jabatan
         Jabatan::create([
             // 'image'     => $image->hashName(),
+            'departmen'     => $request->departmen,
             'jabatan'     => $request->jabatan,
             'gajipokok'     => $request->gajipokok,
             'gjabatan'     => $request->gjabatan,
@@ -99,6 +102,7 @@ class JabatanController extends Controller
         //validate form
         $this->validate($request, [
             // 'image'     => 'required|image|mimes:jpeg,jpg,png|max:10048',
+            'departmen'     => 'required',
             'jabatan'     => 'required',
             'gajipokok'     => 'required',
             'gjabatan'     => 'required',
@@ -108,6 +112,7 @@ class JabatanController extends Controller
             'inshadir'     => 'required',
 
         ], [
+            'departmen.required' => 'Departmen wajib diisi.',
             'jabatan.required' => 'Jabatan wajib diisi.',
             'gajipokok.required' => 'Gaji Pokok wajib diisi.',
             'gjabatan.required' => 'Gaji Jabatan wajib diisi.',
@@ -120,6 +125,7 @@ class JabatanController extends Controller
         $jabatans = Jabatan::findOrFail($id);
 
         $jabatans->update([
+            'departmen'     => $request->departmen,
             'jabatan'     => $request->jabatan,
             'gajipokok'     => $request->gajipokok,
             'gjabatan'     => $request->gjabatan,

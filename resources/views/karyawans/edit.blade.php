@@ -26,6 +26,19 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="font-weight-bold">Departmen</label>
+                        <input type="text" class="form-control @error('departmen') is-invalid @enderror" name="departmen"
+                            value="{{ old('departmen', $karyawans->departmen) }}" placeholder="Masukkan Nama Lengkap">
+
+                        <!-- error message untuk departmen -->
+                        @error('departmen')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label class="font-weight-bold">No Rekening</label>
                         <input type="number" class="form-control @error('norek') is-invalid @enderror" name="norek"
                             value="{{ old('norek', $karyawans->norek) }}" placeholder="Masukkan Nama Lengkap">
@@ -39,13 +52,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">Lama Kerja</label>
-                        <input type="number" step="0.01" class="form-control @error('lamakerja') is-invalid @enderror"
-                            name="lamakerja" value="{{ old('lamakerja', $karyawans->lamakerja) }}"
-                            placeholder="Masukkan Nama Lengkap">
+                        <label class="font-weight-bold">Tanggal Masuk</label>
+                        <input type="date" class="form-control @error('masuk') is-invalid @enderror" name="masuk"
+                            value="{{ old('masuk', $karyawans->masuk) }}" placeholder="Masukkan Nama Lengkap">
 
-                        <!-- error message untuk lamakerja -->
-                        @error('lamakerja')
+                        <!-- error message untuk masuk -->
+                        @error('masuk')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>
@@ -53,7 +65,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
-                    <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                    <a href="{{ URL::previous() }}" class="btn btn-md btn-danger">CANCEL</a>
 
                 </form>
             </div>

@@ -49,13 +49,15 @@ class KaryawanController extends Controller
             // 'image'     => 'required|image|mimes:jpeg,jpg,png|max:10048',
             'name'     => 'required',
             'norek'     => 'required',
-            'lamakerja'     => 'required',
+            // 'masuk'     => 'required',
+            'departmen' => 'required',
 
         ], [
             'name.required' => 'Nama wajib diisi.',
             // 'name.min' => 'Nama minimal harus 5 karakter.',
             'norek.required' => 'Nomor rekening wajib diisi.',
-            'lamakerja.required' => 'Lama kerja wajib diisi.',
+            // 'masuk.required' => 'Tanggal masuk wajib diisi.',
+            'departmen.required' => 'Departmen wajib diisi.',
         ]);
 
 
@@ -64,8 +66,9 @@ class KaryawanController extends Controller
         Karyawan::create([
             'name'     => $request->name,
             'norek'     => $request->norek,
-            'lamakerja'     => $request->lamakerja,
+            'masuk'     => $request->masuk,
             'jabatan_id' => $request->jabatan_id,
+            'departmen' => $request->departmen
         ]);
 
         //redirect to index
@@ -103,21 +106,24 @@ class KaryawanController extends Controller
         //validate form
         $this->validate($request, [
             'name'     => 'required',
+            'departmen'     => 'required',
             'norek'   => 'required',
-            'lamakerja' => 'required'
+            'masuk' => 'required'
         ], [
             'name.required' => 'Nama wajib diisi.',
+            'departmen.required' => 'Departmen wajib diisi.',
             // 'name.min' => 'Nama minimal harus 5 karakter.',
             'norek.required' => 'Nomor rekening wajib diisi.',
-            'lamakerja.required' => 'Lama kerja wajib diisi.',
+            'masuk.required' => 'Tanggal masuk wajib diisi.',
         ]);
 
         $karyawans = Karyawan::findOrFail($id);
 
         $karyawans->update([
             'name'     => $request->name,
+            'departmen'     => $request->departmen,
             'norek'   => $request->norek,
-            'lamakerja'   => $request->lamakerja,
+            'masuk'   => $request->masuk,
         ]);
 
 

@@ -11,7 +11,18 @@
             <div class="card-body">
                 <form action="{{ route('jabatans.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
                     @csrf
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">Departmen</label>
+                        <input type="text" class="form-control @error('departmen') is-invalid @enderror" name="departmen"
+                            value="{{ old('departmen') }}" placeholder="Masukkan Departmen">
+                        @error('departmen')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Jabatan</label>
                         <input type="text" class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
                             value="{{ old('jabatan') }}" placeholder="Masukkan Jabatan">
@@ -36,7 +47,7 @@
                     <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Gaji Jabatan</label>
                         <input type="number" step="0.01" class="form-control @error('gjabatan') is-invalid @enderror"
-                            name="gjabatan" value="{{ old('gjabatan') }}" placeholder="Masukkan No Rekening">
+                            name="gjabatan" value="{{ old('gjabatan') }}" placeholder="Masukkan Gaji Jabatan">
                         @error('gjabatan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -46,7 +57,7 @@
                     <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Operasional</label>
                         <input type="number" step="0.01" class="form-control @error('oprs') is-invalid @enderror"
-                            name="oprs" value="{{ old('oprs') }}" placeholder="Masukkan No Rekening">
+                            name="oprs" value="{{ old('oprs') }}" placeholder="Masukkan Operasional">
                         @error('oprs')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -56,7 +67,7 @@
                     <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Service</label>
                         <input type="number" step="0.01" class="form-control @error('service') is-invalid @enderror"
-                            name="service" value="{{ old('service') }}" placeholder="Masukkan No Rekening">
+                            name="service" value="{{ old('service') }}" placeholder="Masukkan Service">
                         @error('service')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -66,7 +77,7 @@
                     <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">HP</label>
                         <input type="number" step="0.01" class="form-control @error('hp') is-invalid @enderror"
-                            name="hp" value="{{ old('hp') }}" placeholder="Masukkan No Rekening">
+                            name="hp" value="{{ old('hp') }}" placeholder="Masukkan HP">
                         @error('hp')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -76,7 +87,7 @@
                     <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Insentif Kehadiran</label>
                         <input type="number" step="0.01" class="form-control @error('inshadir') is-invalid @enderror"
-                            name="inshadir" value="{{ old('inshadir') }}" placeholder="Masukkan No Rekening">
+                            name="inshadir" value="{{ old('inshadir') }}" placeholder="Masukkan Insentif Kehadiran">
                         @error('inshadir')
                             <div class="invalid-feedback">
                                 {{ $message }}

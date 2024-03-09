@@ -29,16 +29,38 @@ class DatabaseSeeder extends Seeder
 
         $data = [
             [
-                'name' => 'Karyawan Satu',
-                'norek' => '123',
-                'lamakerja' => '1.2',
-                'jabatan_id' => 6
+                'name' => 'DIMAS MARKIANO',
+                'departmen' => 'KEYPERSON',
+                'norek' => '2990631151',
+                'masuk' => '2009-01-10',
+                // 'lamakerja' => '15.16',
+                'jabatan_id' => 1,
             ],
             [
-                'name' => 'Karyawan Dua',
-                'norek' => '321',
-                'lamakerja' => '2.1',
-                'jabatan_id' => 9
+                'name' => 'DAUD SULAIMAN',
+                'departmen' => 'KEYPERSON',
+                'norek' => '3740790730',
+                'masuk' => '2010-09-14',
+                // 'lamakerja' => '13.49',
+                'jabatan_id' => 2,
+            ],
+
+            [
+                'departmen' => 'CREDIT AR',
+                'name' => 'IMAM SAEPUDDIN',
+                'norek' => '3040509941',
+                'masuk' => '2015-08-13',
+                // 'lamakerja' => '13.49',
+                'jabatan_id' => 3,
+            ],
+
+            [
+                'departmen' => 'MARKETING',
+                'name' => 'IRWANTO',
+                'norek' => '3040831681',
+                'masuk' => '2021-10-09',
+                // 'lamakerja' => '13.49',
+                'jabatan_id' => 11,
             ],
         ];
 
@@ -312,16 +334,26 @@ class DatabaseSeeder extends Seeder
 
         $data3 = [
             [
-                'karyawan_id' => 1,
-                'angsuran' => '1000',
-                'bpjs' => '2000',
-                'kasbon' => '3000'
+                'karyawan_id' => "1",
+                'hadir' => "26",
+                'izin' => "2",
+                'sakit' => '1',
+                'telat' => '0',
+                'alfa' => '0',
+                'angsuran' => '0',
+                'bpjs' => '145000',
+                'kasbon' => '0',
             ],
             [
-                'karyawan_id' => 1,
-                'angsuran' => '4000',
-                'bpjs' => '5000',
-                'kasbon' => '6000'
+                'karyawan_id' => "2",
+                'hadir' => "27",
+                'izin' => "0",
+                'sakit' => '1',
+                'telat' => '0',
+                'alfa' => '0',
+                'angsuran' => '360000',
+                'bpjs' => '115000',
+                'kasbon' => '0',
             ],
         ];
 

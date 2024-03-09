@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/compiled/css/table-datatable.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+    <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/flatpickr/flatpickr.min.css') }}">
 
 </head>
 
@@ -123,6 +124,27 @@
                                 <li
                                     class="submenu-item sidebar-item {{ request()->routeIs('jabatans.create') ? 'active' : '' }}">
                                     <a href="{{ route('jabatans.create') }}" class="submenu-link">Tambah Jabatan</a>
+                                </li>
+                            </ul>
+
+
+                        </li>
+
+                        <li class="sidebar-item has-sub {{ request()->is('gajis*', 'creategajis*') ? 'active' : '' }}">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-cash-coin"></i>
+                                <span>Gaji</span>
+                            </a>
+
+                            <ul class="submenu ">
+                                <li
+                                    class="submenu-item sidebar-item {{ request()->routeIs('gajis.index') ? 'active' : '' }}">
+                                    <a href="{{ route('gajis.index') }}" class="submenu-link">Daftar Gaji</a>
+                                </li>
+
+                                <li
+                                    class="submenu-item sidebar-item {{ request()->routeIs('gajis.create') ? 'active' : '' }}">
+                                    <a href="{{ route('gajis.create') }}" class="submenu-link">Tambah Gaji</a>
                                 </li>
                             </ul>
 
@@ -287,6 +309,9 @@
     <script src="{{ asset('mazer/assets/static/js/pages/sweetalert2.js') }}"></script>
     <script src="{{ asset('mazer/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/form-element-select.js') }}"></script>
+    <script src="{{ asset('mazer/assets/extensions/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('mazer/assets/static/js/pages/date-picker.js') }}"></script>
+
 
 
     {{-- <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>

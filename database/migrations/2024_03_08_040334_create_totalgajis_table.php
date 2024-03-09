@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('totalgajis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('karyawan_id')->constrained('karyawans');
+            $table->date('tanggal')->nullable();
+            $table->integer('hadir');
+            $table->integer('izin');
+            $table->integer('sakit');
+            $table->integer('telat');
+            $table->integer('alfa');
             $table->integer('angsuran');
             $table->integer('bpjs');
             $table->integer('kasbon');

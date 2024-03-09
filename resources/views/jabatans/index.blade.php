@@ -26,12 +26,12 @@
                         @foreach ($jabatans as $jabatan)
                             <tr>
                                 <td>{{ $jabatan->jabatan }}</td>
-                                <td>Rp {{ number_format($jabatan->gajipokok, 0, ',', '.') }}</td>
-                                <td>Rp {{ number_format($jabatan->gjabatan, 0, ',', '.') }}</td>
-                                <td>Rp {{ number_format($jabatan->oprs, 0, ',', '.') }}</td>
-                                <td>Rp {{ number_format($jabatan->service, 0, ',', '.') }}</td>
-                                <td>Rp {{ number_format($jabatan->hp, 0, ',', '.') }}</td>
-                                <td>Rp {{ number_format($jabatan->inshadir, 0, ',', '.') }}</td>
+                                <td> {{ number_format($jabatan->gajipokok, 0, ',', '.') }}</td>
+                                <td> {{ number_format($jabatan->gjabatan, 0, ',', '.') }}</td>
+                                <td> {{ number_format($jabatan->oprs, 0, ',', '.') }}</td>
+                                <td> {{ number_format($jabatan->service, 0, ',', '.') }}</td>
+                                <td> {{ number_format($jabatan->hp, 0, ',', '.') }}</td>
+                                <td> {{ number_format($jabatan->inshadir, 0, ',', '.') }}</td>
                                 <td>
                                     <form action="{{ route('jabatans.destroy', $jabatan->id) }}" method="POST">
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"

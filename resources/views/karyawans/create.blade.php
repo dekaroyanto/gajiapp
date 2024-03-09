@@ -23,6 +23,17 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Departmen</label>
+                        <input type="text" class="form-control @error('departmen') is-invalid @enderror" name="departmen"
+                            value="{{ old('departmen') }}" placeholder="Masukkan Nama Lengkap">
+                        @error('departmen')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="jabatan" class="form-label">Jabatan</label>
                         <select class="choices form-select @error('jabatan_id') is-invalid @enderror" name="jabatan_id"
                             id="jabatan">
@@ -49,10 +60,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Lama Kerja</label>
-                        <input type="number" step="0.01" class="form-control @error('lamakerja') is-invalid @enderror"
-                            name="lamakerja" value="{{ old('lamakerja') }}" placeholder="Masukkan No Rekening">
-                        @error('lamakerja')
+                        <label for="exampleInputEmail1" class="form-label">Tanggal Masuk</label>
+                        <input type="date" step="0.01" class="form-control mb-3 @error('masuk') is-invalid @enderror"
+                            name="masuk" value="{{ old('masuk') }}" placeholder="Masukkan Tanggal Masuk">
+                        @error('masuk')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

@@ -13,7 +13,20 @@
                     class="row g-3">
                     @csrf
                     @method('PUT')
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
+                        <label class="font-weight-bold">Departmen</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="departmen"
+                            value="{{ old('departmen', $jabatans->departmen) }}" placeholder="Masukkan Departmen">
+
+                        <!-- error message untuk name -->
+                        @error('departmen')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-md-6">
                         <label class="font-weight-bold">Jabatan</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="jabatan"
                             value="{{ old('jabatan', $jabatans->jabatan) }}" placeholder="Masukkan Jabatan">

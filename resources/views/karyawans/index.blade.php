@@ -13,8 +13,10 @@
                     <thead class="text-center">
                         <tr>
                             <th>Name</th>
+                            <th>Departmen</th>
                             <th>Jabatan</th>
                             <th>No Rekening</th>
+                            <th>Tanggal Masuk</th>
                             <th>Lama Kerja</th>
                             <th>Action</th>
                         </tr>
@@ -23,9 +25,15 @@
                         @foreach ($karyawans as $karyawan)
                             <tr>
                                 <td>{{ $karyawan->name }}</td>
+                                <td>{{ $karyawan->departmen }}</td>
                                 <td>{{ $karyawan->jabatan->jabatan }}</td>
                                 <td>{{ $karyawan->norek }}</td>
-                                <td>{{ $karyawan->lamakerja }}</td>
+                                <td>{{ $karyawan->masuk }}</td>
+                                <td>
+                                    {{-- Calculate work duration in years and round to two decimal places --}}
+                                    {{ round(Carbon\Carbon::parse($karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}
+                                </td>
+                                </td>
                                 <td>
                                     <form action="{{ route('karyawans.destroy', $karyawan->id) }}" method="POST">
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
