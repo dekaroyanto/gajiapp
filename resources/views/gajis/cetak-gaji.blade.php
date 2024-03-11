@@ -17,10 +17,19 @@
 <body>
     <div class="form-group">
         <table class="form-group">
-            <p align="center"><b>REKAP GAJI</b></p>
+            <p align="center"><b>REKAP GAJI
+                    @php
+                        // Ambil tanggal dari data pertama
+                        $firstDataDate = $totalgajis->first()->tanggal;
+                        // Ubah tanggal menjadi nama bulan dan tahun
+                        $formattedDate = date('F Y', strtotime($firstDataDate));
+                        echo $formattedDate;
+                    @endphp
+                </b></p>
             <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
                 <tr>
                     <th>NO SLIP</th>
+                    <th>Tanggal</th>
                     <th>Nama Karyawan</th>
                     <th>Jabatan</th>
                     <th>Gaji Pokok</th>
@@ -41,6 +50,7 @@
                 @foreach ($totalgajis as $lur)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td>{{ $lur->tanggal }}</td>
                         <td>{{ $lur->karyawan->name }}</td>
                         <td>{{ $lur->karyawan->jabatan->jabatan }}</td>
                         <td>{{ number_format($lur->karyawan->jabatan->gajipokok, 0, ',', '.') }}</td>

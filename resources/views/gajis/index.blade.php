@@ -31,16 +31,6 @@
                 </div>
             </form>
 
-            <div class="col-12 col-md-4">
-                <label for="month_year">Bulan dan Tahun:</label>
-                <select class="form-control" id="month_year" name="month_year">
-                    @foreach ($months as $key => $month)
-                        <option value="{{ $key }}" {{ request('month_year') == $key ? 'selected' : '' }}>
-                            {{ $month }}</option>
-                    @endforeach
-                </select>
-            </div>
-
 
             <div class="card-body">
                 <table class="table table-striped" id="table1">
