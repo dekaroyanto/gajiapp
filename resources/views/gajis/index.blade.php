@@ -6,8 +6,10 @@
             <div class="card-header">
                 <h5 class="card-title">
                     Daftar Gaji Karyawan
-                    <a href="{{ route('cetak-gaji') }}" target="_blank" class="btn btn-primary">Cetak Data <i
+                    <a href="{{ route('cetak-gaji', ['start_date' => request('start_date'), 'end_date' => request('end_date')]) }}"
+                        target="_blank" class="btn btn-primary">Cetak Data <i
                             class="bi bi-file-earmark-arrow-down-fill"></i></a>
+
                 </h5>
 
             </div>

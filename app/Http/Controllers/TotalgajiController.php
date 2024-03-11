@@ -36,13 +36,20 @@ class TotalgajiController extends Controller
 
 
 
-    public function cetakGaji()
+    public function cetakGaji(Request $request)
     {
-        $totalgajis = Totalgaji::all();
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
 
-        return view('gajis.cetak-gaji', compact('totalgajis'));
+        $query = Totalgaji::query();
 
-        $pdf = Pdf::loadView('gajis.cetak-gaji', compact('totalgajis'))->setPaper('a4', 'landscape');
+        if ($startDate && $endDate) {
+            $query->whereBetween('tanggal', [$startDate, $endDate]);
+        }
+
+        $totalgajis = $query->get();
+
+        $pdf = PDF::loadView('gajis.cetak-gaji', compact('totalgajis'))->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 
