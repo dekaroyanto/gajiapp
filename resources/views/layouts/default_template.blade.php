@@ -350,6 +350,8 @@
         });
     </script>
 
+    @yield('jscript')
+
     <script>
         // Menggunakan Sweet Alert 2 untuk konfirmasi logout
         document.getElementById('logout').addEventListener('click', function(e) {

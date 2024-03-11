@@ -11,6 +11,37 @@
                 </h5>
 
             </div>
+            <form method="GET" action="{{ route('gajis.index') }}">
+                <div class="row mx-2">
+                    <div class="col-12 col-md-4">
+                        <label for="start_date">Tanggal Awal:</label>
+                        <input class="form-control" type="date" id="start_date" name="start_date"
+                            value="{{ request('start_date') }}">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="end_date">Tanggal Akhir:</label>
+                        <input class="form-control" type="date" id="end_date" name="end_date"
+                            value="{{ request('end_date') }}">
+                    </div>
+                    <div class="col-12 col-md-4 mt-4 mb-4">
+                        <button type="submit" class="btn btn-secondary">Filter</button>
+                        <a href="{{ route('gajis.index') }}" class="btn btn-secondary">Reset</a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-12 col-md-4">
+                <label for="month_year">Bulan dan Tahun:</label>
+                <select class="form-control" id="month_year" name="month_year">
+                    @foreach ($months as $key => $month)
+                        <option value="{{ $key }}" {{ request('month_year') == $key ? 'selected' : '' }}>
+                            {{ $month }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
             <div class="card-body">
                 <table class="table table-striped" id="table1">
                     <thead class="text-center">

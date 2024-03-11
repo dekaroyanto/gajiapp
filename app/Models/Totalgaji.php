@@ -10,6 +10,21 @@ class Totalgaji extends Model
 {
     use HasFactory;
 
+    public function getTotalInshadirAttribute()
+    {
+        return $this->karyawan->jabatan->inshadir * $this->hadir;
+    }
+
+    public function getTotalgajiAttribute()
+    {
+        return $this->total_inshadir + $this->karyawan->jabatan->gajipokok + $this->karyawan->jabatan->gjabatan + $this->karyawan->jabatan->oprs + $this->karyawan->jabatan->service + $this->karyawan->jabatan->hp;
+    }
+
+    public function getGajiakhirAttribute()
+    {
+        return $this->totalgaji - ($this->angsuran + $this->bpjs + $this->kasbon);
+    }
+
     protected $fillable = [
         'karyawan_id',
         'tanggal',

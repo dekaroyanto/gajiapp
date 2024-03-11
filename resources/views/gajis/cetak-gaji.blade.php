@@ -36,11 +36,11 @@
                     <th>Gaji Akhir</th>
                 </tr>
                 @php
-                    $counter = 1;
+                    $no = 1;
                 @endphp
                 @foreach ($totalgajis as $lur)
                     <tr>
-                        <td>{{ $counter }}</td>
+                        <td>{{ $no++ }}</td>
                         <td>{{ $lur->karyawan->name }}</td>
                         <td>{{ $lur->karyawan->jabatan->jabatan }}</td>
                         <td>{{ number_format($lur->karyawan->jabatan->gajipokok, 0, ',', '.') }}</td>

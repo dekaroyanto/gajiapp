@@ -17,7 +17,7 @@
                             <label for="exampleInputEmail1" class="form-label ">Tanggal
                             </label>
                             <input type="date" name="tanggal"
-                                class="form-control mb-3 flatpickr-no-config @error('tanggal') is-invalid @enderror "
+                                class="form-control mb-3 @error('tanggal') is-invalid @enderror "
                                 placeholder="Masukan Tanggal" />
                             @error('tanggal')
                                 <div class="invalid-feedback">
