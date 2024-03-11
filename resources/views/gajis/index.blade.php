@@ -6,12 +6,16 @@
             <div class="card-header">
                 <h5 class="card-title">
                     Daftar Gaji Karyawan
+                    <a href="{{ route('cetak-gaji') }}" target="_blank" class="btn btn-primary">Cetak Data <i
+                            class="bi bi-file-earmark-arrow-down-fill"></i></a>
                 </h5>
+
             </div>
             <div class="card-body">
                 <table class="table table-striped" id="table1">
                     <thead class="text-center">
                         <tr>
+                            <th>Tanggal Input</th>
                             <th>Nama Karyawan</th>
                             <th>Jabatan</th>
                             <th>H</th>
@@ -37,6 +41,7 @@
                     <tbody>
                         @foreach ($totalgajis as $lur)
                             <tr>
+                                <td>{{ $lur->tanggal }}</td>
                                 <td>{{ $lur->karyawan->name }}</td>
                                 <td>{{ $lur->karyawan->jabatan->jabatan }}</td>
                                 <td>{{ $lur->hadir }}</td>

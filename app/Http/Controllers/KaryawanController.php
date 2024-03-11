@@ -21,12 +21,21 @@ class KaryawanController extends Controller
     }
 
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $karyawans = Karyawan::with('jabatan')->latest()->get();
-        // $karyawans = DB::table('karyawans')->get();
+        $departmens = Karyawan::select('departmen')->distinct()->get()->pluck('departmen');
+        $karyawans = Karyawan::with('jabatan')->latest();
+        $keypersons = Karyawan::where('departmen', 'KEYPERSON')->get();
+        $creditar = Karyawan::where('departmen', 'CREDIT AR')->get();
+        $marketing = Karyawan::where('departmen', 'MARKETING')->get();
 
-        return view('karyawans.index', compact('karyawans'));
+        if ($request->has('departmen') && $request->departmen != '') {
+            $karyawans->where('departmen', $request->departmen);
+        }
+
+        $karyawans = $karyawans->get();
+
+        return view('karyawans.index', compact('karyawans', 'departmens', 'keypersons', 'creditar', 'marketing'));
     }
 
     /**

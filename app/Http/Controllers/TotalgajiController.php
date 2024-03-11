@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
 use App\Models\Totalgaji;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+use Mpdf\Mpdf;
 
 class TotalgajiController extends Controller
 {
@@ -22,8 +28,27 @@ class TotalgajiController extends Controller
 
             $lur->gajiakhir = $lur->totalgaji - ($lur->angsuran + $lur->bpjs + $lur->kasbon);
         }
+
+
         return view('gajis.index', compact('totalgajis',));
     }
+
+    public function cetakGaji()
+    {
+        $totalgajis = Totalgaji::all();
+        foreach ($totalgajis as $lur) {
+            $lur->total_inshadir = $lur->karyawan->jabatan->inshadir * $lur->hadir;
+
+            $lur->totalgaji = $lur->total_inshadir + $lur->karyawan->jabatan->gajipokok + $lur->karyawan->jabatan->gjabatan + $lur->karyawan->jabatan->oprs + $lur->karyawan->jabatan->service + $lur->karyawan->jabatan->hp;
+
+            $lur->gajiakhir = $lur->totalgaji - ($lur->angsuran + $lur->bpjs + $lur->kasbon);
+        }
+        // return view('gajis.cetak-gaji', compact('totalgajis'));
+
+        $pdf = Pdf::loadView('gajis.cetak-gaji', compact('totalgajis'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
+    }
+
 
     /**
      * Show the form for creating a new resource.
