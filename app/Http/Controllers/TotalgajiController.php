@@ -34,6 +34,8 @@ class TotalgajiController extends Controller
         return view('gajis.index', compact('totalgajis'));
     }
 
+
+
     public function cetakGaji()
     {
         $totalgajis = Totalgaji::all();
