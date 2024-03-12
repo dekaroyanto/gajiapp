@@ -18,15 +18,31 @@ class TotalgajiController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index(Request $request)
+    // {
+    //     $startDate = $request->input('start_date');
+    //     $endDate = $request->input('end_date');
+
+    //     $query = Totalgaji::query();
+
+    //     if ($startDate && $endDate) {
+    //         $query->whereBetween('tanggal', [$startDate, $endDate]);
+    //     }
+
+    //     $totalgajis = $query->get();
+
+    //     return view('gajis.index', compact('totalgajis'));
+    // }
+
     public function index(Request $request)
     {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $month = $request->input('month');
+        $year = $request->input('year');
 
         $query = Totalgaji::query();
 
-        if ($startDate && $endDate) {
-            $query->whereBetween('tanggal', [$startDate, $endDate]);
+        if ($month && $year) {
+            $query->whereMonth('tanggal', $month)->whereYear('tanggal', $year);
         }
 
         $totalgajis = $query->get();
@@ -38,13 +54,13 @@ class TotalgajiController extends Controller
 
     public function cetakGaji(Request $request)
     {
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $month = $request->input('month');
+        $year = $request->input('year');
 
         $query = Totalgaji::query();
 
-        if ($startDate && $endDate) {
-            $query->whereBetween('tanggal', [$startDate, $endDate]);
+        if ($month && $year) {
+            $query->whereMonth('tanggal', $month)->whereYear('tanggal', $year);
         }
 
         $totalgajis = $query->get();
@@ -52,6 +68,23 @@ class TotalgajiController extends Controller
         $pdf = PDF::loadView('gajis.cetak-gaji', compact('totalgajis'))->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
+
+    // public function cetakGaji(Request $request)
+    // {
+    //     $startDate = $request->input('start_date');
+    //     $endDate = $request->input('end_date');
+
+    //     $query = Totalgaji::query();
+
+    //     if ($startDate && $endDate) {
+    //         $query->whereBetween('tanggal', [$startDate, $endDate]);
+    //     }
+
+    //     $totalgajis = $query->get();
+
+    //     $pdf = PDF::loadView('gajis.cetak-gaji', compact('totalgajis'))->setPaper('a4', 'landscape');
+    //     return $pdf->stream();
+    // }
 
 
     /**
@@ -79,6 +112,7 @@ class TotalgajiController extends Controller
             'angsuran'     => 'required',
             'bpjs'     => 'required',
             'kasbon'     => 'required',
+            'thr'     => 'required',
 
         ], [
             'karyawan_id.required' => 'Nama karyawan wajib diisi.',
@@ -91,6 +125,7 @@ class TotalgajiController extends Controller
             'angsuran.required' => 'Jumlah angsuran wajib diisi.',
             'bpjs.required' => 'Jumlah bpjs wajib diisi.',
             'kasbon.required' => 'Jumlah kasbon wajib diisi.',
+            'thr.required' => 'Jumlah THR/Bonus wajib diisi.',
 
         ]);
 
@@ -105,6 +140,7 @@ class TotalgajiController extends Controller
             'angsuran' => $request->angsuran,
             'bpjs' => $request->bpjs,
             'kasbon' => $request->kasbon,
+            'thr' => $request->thr,
         ]);
 
         return redirect()->route('gajis.index')->with('success', 'Data berhasil disimpan');

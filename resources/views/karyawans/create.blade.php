@@ -25,7 +25,7 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Departmen</label>
                         <input type="text" class="form-control @error('departmen') is-invalid @enderror" name="departmen"
-                            value="{{ old('departmen') }}" placeholder="Masukkan Nama Lengkap">
+                            value="{{ old('departmen') }}" placeholder="Masukkan Departmen">
                         @error('departmen')
                             <div class="invalid-feedback">
                                 {{ $message }}

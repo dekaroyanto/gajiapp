@@ -343,6 +343,7 @@ class DatabaseSeeder extends Seeder
                 'angsuran' => '0',
                 'bpjs' => '145000',
                 'kasbon' => '0',
+                'thr' => '0',
             ],
             [
                 'karyawan_id' => "2",
@@ -354,6 +355,7 @@ class DatabaseSeeder extends Seeder
                 'angsuran' => '360000',
                 'bpjs' => '115000',
                 'kasbon' => '0',
+                'thr' => '0',
             ],
         ];
 

@@ -12,22 +12,7 @@
                 <form action="{{ route('gajis.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
                     @csrf
 
-                    <div class="col-md-6 col-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="form-label ">Tanggal
-                            </label>
-                            <input type="date" name="tanggal"
-                                class="form-control mb-3 @error('tanggal') is-invalid @enderror "
-                                placeholder="Masukan Tanggal" />
-                            @error('tanggal')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-12">
                         <label for="karyawan" class="form-label">Nama Karyawan</label>
                         <select class="choices form-select @error('karyawan_id') is-invalid @enderror" name="karyawan_id"
                             id="karyawan">
@@ -43,6 +28,23 @@
                             </div>
                         @enderror
                     </div>
+
+                    <div class="col-md-6 col-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="form-label ">Tanggal Periode Gaji
+                            </label>
+                            <input type="date" name="tanggal"
+                                class="form-control mb-3 @error('tanggal') is-invalid @enderror "
+                                placeholder="Masukan Tanggal" />
+                            @error('tanggal')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+
 
                     <div class="mb-3 col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Angsuran</label>
@@ -128,6 +130,17 @@
                         <input type="number" class="form-control @error('alfa') is-invalid @enderror" name="alfa"
                             value="{{ old('alfa') }}" placeholder="Masukkan Jumlah alfa">
                         @error('alfa')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3 col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">THR/BONUS</label>
+                        <input type="number" class="form-control @error('thr') is-invalid @enderror" name="thr"
+                            value="{{ old('thr') }}" placeholder="Masukkan Jumlah thr">
+                        @error('thr')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

@@ -12,7 +12,7 @@ class Totalgaji extends Model
 
     public function getTotalInshadirAttribute()
     {
-        return $this->karyawan->jabatan->inshadir * $this->hadir;
+        return $this->karyawan->jabatan->inshadir * $this->hadir + $this->thr;
     }
 
     public function getTotalgajiAttribute()
@@ -36,6 +36,7 @@ class Totalgaji extends Model
         'angsuran',
         'bpjs',
         'kasbon',
+        'thr'
     ];
 
     // public function calculateTotalGaji()

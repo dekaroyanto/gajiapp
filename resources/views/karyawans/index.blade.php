@@ -79,7 +79,7 @@
 
     </section>
 
-    <section class="section">
+    {{-- <section class="section">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-3">
@@ -108,7 +108,6 @@
                                 <td>{{ $karyawan->norek }}</td>
                                 <td>{{ $karyawan->masuk }}</td>
                                 <td>
-                                    {{-- Calculate work duration in years and round to two decimal places --}}
                                     {{ round(Carbon\Carbon::parse($karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}
                                 </td>
                                 </td>
@@ -136,9 +135,9 @@
             </div>
         </div>
 
-    </section>
+    </section> --}}
 
-    <section class="section">
+    {{-- <section class="section">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-3">
@@ -167,7 +166,6 @@
                                 <td>{{ $karyawan->norek }}</td>
                                 <td>{{ $karyawan->masuk }}</td>
                                 <td>
-                                    {{-- Calculate work duration in years and round to two decimal places --}}
                                     {{ round(Carbon\Carbon::parse($karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}
                                 </td>
                                 </td>
@@ -195,9 +193,9 @@
             </div>
         </div>
 
-    </section>
+    </section> --}}
 
-    <section class="section">
+    {{-- <section class="section">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-3">
@@ -226,7 +224,6 @@
                                 <td>{{ $karyawan->norek }}</td>
                                 <td>{{ $karyawan->masuk }}</td>
                                 <td>
-                                    {{-- Calculate work duration in years and round to two decimal places --}}
                                     {{ round(Carbon\Carbon::parse($karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}
                                 </td>
                                 </td>
@@ -254,7 +251,7 @@
             </div>
         </div>
 
-    </section>
+    </section> --}}
 
 
 

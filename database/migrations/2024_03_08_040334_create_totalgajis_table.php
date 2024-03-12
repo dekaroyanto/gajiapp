@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('angsuran');
             $table->integer('bpjs');
             $table->integer('kasbon');
+            $table->integer('thr');
             $table->timestamps();
         });
     }
