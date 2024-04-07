@@ -9,7 +9,7 @@
                 </h5>
 
                 <form action="{{ route('karyawans.index') }}" method="GET">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label for="departmen">Departmen:</label>
                         <div style="display: flex; align-items: center;">
                             <select name="departmen" id="departmen" class="form-control">
@@ -37,6 +37,7 @@
                             <th>No Rekening</th>
                             <th>Tanggal Masuk</th>
                             <th>Lama Kerja</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,12 +48,12 @@
                                 <td>{{ $karyawan->departmen }}</td>
                                 <td>{{ $karyawan->jabatan->jabatan }}</td>
                                 <td>{{ $karyawan->norek }}</td>
-                                <td>{{ $karyawan->masuk }}</td>
+                                <td>{{ \Carbon\Carbon::parse($karyawan->masuk)->format('d-M-y') }}</td>
                                 <td>
                                     {{-- Calculate work duration in years and round to two decimal places --}}
                                     {{ round(Carbon\Carbon::parse($karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}
                                 </td>
-                                </td>
+                                <td>{{ $karyawan->statuskaryawan }}</td>
                                 <td>
                                     <form action="{{ route('karyawans.destroy', $karyawan->id) }}" method="POST">
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -278,9 +279,24 @@
                                     value="{{ $karyawan->norek }}">
                             </div>
                             <div class="col-md-6">
+                                <label for="exampleInputEmail1" class="form-label">Departmen</label>
+                                <input disabled type="text" class="form-control" name="departmen"
+                                    value="{{ $karyawan->departmen }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputEmail1" class="form-label">Jabatan</label>
+                                <input disabled type="text" class="form-control" name="jabatan"
+                                    value="{{ $karyawan->jabatan->jabatan }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputEmail1" class="form-label">Tanggal Masuk</label>
+                                <input disabled type="text" class="form-control" name="masuk"
+                                    value="{{ \Carbon\Carbon::parse($karyawan->masuk)->format('d-M-y') }}">
+                            </div>
+                            <div class="col-md-6">
                                 <label for="exampleInputEmail1" class="form-label">Lama Kerja</label>
                                 <input disabled type="text" class="form-control" name="lamakerja"
-                                    value="{{ $karyawan->lamakerja }}">
+                                    value="{{ round(Carbon\Carbon::parse($karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}">
                             </div>
                         </div>
 

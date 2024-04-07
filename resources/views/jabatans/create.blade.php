@@ -11,16 +11,6 @@
             <div class="card-body">
                 <form action="{{ route('jabatans.store') }}" method="POST" enctype="multipart/form-data" class="row g-3">
                     @csrf
-                    <div class="col-md-6">
-                        <label for="exampleInputEmail1" class="form-label">Departmen</label>
-                        <input type="text" class="form-control @error('departmen') is-invalid @enderror" name="departmen"
-                            value="{{ old('departmen') }}" placeholder="Masukkan Departmen">
-                        @error('departmen')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
 
                     <div class="col-md-6">
                         <label for="exampleInputEmail1" class="form-label">Jabatan</label>

@@ -60,6 +60,7 @@ class KaryawanController extends Controller
             'norek'     => 'required',
             // 'masuk'     => 'required',
             'departmen' => 'required',
+            'statuskaryawan' => 'required'
 
         ], [
             'name.required' => 'Nama wajib diisi.',
@@ -67,6 +68,7 @@ class KaryawanController extends Controller
             'norek.required' => 'Nomor rekening wajib diisi.',
             // 'masuk.required' => 'Tanggal masuk wajib diisi.',
             'departmen.required' => 'Departmen wajib diisi.',
+            'statuskaryawan.required' => 'Pilih status karyawan'
         ]);
 
 
@@ -77,7 +79,8 @@ class KaryawanController extends Controller
             'norek'     => $request->norek,
             'masuk'     => $request->masuk,
             'jabatan_id' => $request->jabatan_id,
-            'departmen' => $request->departmen
+            'departmen' => $request->departmen,
+            'statuskaryawan' => $request->statuskaryawan
         ]);
 
         //redirect to index
@@ -117,13 +120,15 @@ class KaryawanController extends Controller
             'name'     => 'required',
             'departmen'     => 'required',
             'norek'   => 'required',
-            'masuk' => 'required'
+            'masuk' => 'required',
+            'statuskaryawan' => 'required'
         ], [
             'name.required' => 'Nama wajib diisi.',
             'departmen.required' => 'Departmen wajib diisi.',
             // 'name.min' => 'Nama minimal harus 5 karakter.',
             'norek.required' => 'Nomor rekening wajib diisi.',
             'masuk.required' => 'Tanggal masuk wajib diisi.',
+            'statuskaryawan' => 'Pilih status karyawan'
         ]);
 
         $karyawans = Karyawan::findOrFail($id);
@@ -133,6 +138,7 @@ class KaryawanController extends Controller
             'departmen'     => $request->departmen,
             'norek'   => $request->norek,
             'masuk'   => $request->masuk,
+            'statuskaryawan' => $request->statuskaryawan
         ]);
 
 

@@ -9,29 +9,8 @@
                     <a href="{{ route('cetak-gaji', ['month' => request('month'), 'year' => request('year')]) }}"
                         target="_blank" class="btn btn-primary">Cetak Data <i
                             class="bi bi-file-earmark-arrow-down-fill"></i></a>
-
                 </h5>
-
             </div>
-            {{-- <form method="GET" action="{{ route('gajis.index') }}">
-                <div class="row mx-2">
-                    <div class="col-12 col-md-4">
-                        <label for="start_date">Tanggal Awal:</label>
-                        <input class="form-control" type="date" id="start_date" name="start_date"
-                            value="{{ request('start_date') }}">
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <label for="end_date">Tanggal Akhir:</label>
-                        <input class="form-control" type="date" id="end_date" name="end_date"
-                            value="{{ request('end_date') }}">
-                    </div>
-                    <div class="col-12 col-md-4 mt-4 mb-4">
-                        <button type="submit" class="btn btn-secondary">Filter</button>
-                        <a href="{{ route('gajis.index') }}" class="btn btn-secondary">Reset</a>
-                    </div>
-                </div>
-            </form> --}}
 
             <form method="GET" action="{{ route('gajis.index') }}">
                 <div class="row mx-2">
@@ -65,8 +44,8 @@
 
 
             <div class="card-body">
-                <table class="table table-striped" id="table1">
-                    <thead class="text-center">
+                <table class="table table-striped text-sm" id="table1">
+                    <thead class="text-center text-sm">
                         <tr>
                             <th>Tanggal Input</th>
                             <th>NAMA</th>
@@ -91,10 +70,11 @@
                             <th>BPJS</th>
                             <th>KASBON</th>
                             <th>GAJI AKHIR</th>
+                            <th>LAMA KERJA</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-sm">
                         @foreach ($totalgajis as $lur)
                             <tr>
                                 <td>{{ $lur->tanggal }}</td>
@@ -121,11 +101,15 @@
                                 <td>{{ number_format($lur->kasbon, 0, ',', '.') }}</td>
                                 <td>{{ number_format($lur->gajiakhir, 0, ',', '.') }}</td>
                                 <td>
+                                    {{-- Calculate work duration in years and round to two decimal places --}}
+                                    {{ round(Carbon\Carbon::parse($lur->karyawan->masuk)->floatDiffInYears(Carbon\Carbon::now()), 2) }}
+                                </td>
+                                <td>
                                     <form action="{{ route('karyawans.destroy', $lur->id) }}" method="POST">
-                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModalDetail{{ $lur->id }}">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </button>
+
+                                        <a href="{{ route('karyawans.edit', $lur->id) }}" class="btn btn-primary"><i
+                                                class="bi bi-file-earmark-arrow-down"></i>
+                                        </a>
 
                                         <a href="{{ route('karyawans.edit', $lur->id) }}" class="btn btn-warning"><i
                                                 class="bi bi-pencil-square"></i>

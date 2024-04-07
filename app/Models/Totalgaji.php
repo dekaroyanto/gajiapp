@@ -12,7 +12,12 @@ class Totalgaji extends Model
 
     public function getTotalInshadirAttribute()
     {
-        return $this->karyawan->jabatan->inshadir * $this->hadir + $this->thr;
+        return $this->karyawan->jabatan->inshadir * $this->hadir;
+    }
+
+    public function getTotalupahAttribute()
+    {
+        return $this->karyawan->jabatan->gajipokok + $this->karyawan->jabatan->gjabatan + $this->karyawan->jabatan->oprs + $this->karyawan->jabatan->service + $this->karyawan->jabatan->hp;
     }
 
     public function getTotalgajiAttribute()
@@ -22,7 +27,7 @@ class Totalgaji extends Model
 
     public function getGajiakhirAttribute()
     {
-        return $this->totalgaji - ($this->angsuran + $this->bpjs + $this->kasbon);
+        return $this->totalgaji + $this->thr - ($this->angsuran + $this->bpjs + $this->kasbon);
     }
 
     protected $fillable = [

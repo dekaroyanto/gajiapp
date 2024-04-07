@@ -19,6 +19,7 @@ class Karyawan extends Model
         'name',
         'norek',
         'masuk',
+        'statuskaryawan'
     ];
 
     public function jabatan(): BelongsTo

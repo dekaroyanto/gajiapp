@@ -19,6 +19,7 @@ return new class extends Migration
             // $table->string('image');
             $table->bigInteger('norek');
             $table->date('masuk')->nullable();
+            $table->enum('statuskaryawan', ['Aktif', 'Keluar', 'Cuti']);
             $table->timestamps();
         });
     }
